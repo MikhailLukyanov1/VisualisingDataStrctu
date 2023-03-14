@@ -20,8 +20,13 @@ class Stack {
     }
     
     func pop() -> String? {
+        if items != [] {
+            return items.removeLast()
+        }
+        else {
+            return nil
+        }
         
-        return items.popLast()
     }
     
     func peek() -> String {

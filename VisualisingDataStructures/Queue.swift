@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Queue {
+class Queue {
     
     var items: [String] = []
     
@@ -15,19 +15,24 @@ struct Queue {
         self.items = list
     }
     
-    mutating func push(value: String) {
+    func push(value: String) {
         items.append(value)
     }
     
-    mutating func pop() -> String? {
-        guard items.count != 0 else {
+    func pop() -> String? {
+        if items != [] {
+            return items.removeLast()
+        }
+        else {
             return nil
         }
-        return items.removeFirst()
     }
     
     func peek() -> String {
-        guard let topItem = items.first else { fatalError("Stack is empty")}
-        return topItem
+        guard let bottomItem = items.first else { fatalError("Stack is empty")}
+        return bottomItem
     }
+        
+    
+    
 }
