@@ -8,12 +8,21 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @State private var stack = Stack(list: ["2","1"])
+
+    
+
+    
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+            Button("Push", action:{
+                stack.push(value: "2")
+                print(stack.items)
+                print(stack.pop())
+            })
+
+            
         }
         .padding()
     }
