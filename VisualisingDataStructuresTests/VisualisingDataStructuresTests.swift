@@ -60,5 +60,33 @@ final class VisualisingDataStructuresTests: XCTestCase {
         XCTAssertEqual(queue.peek(), "1")
     }
     
+    func testLinkedListWillAddItems() {
+        
+        let list = LinkedList()
+        
+        list.add(value: "a")
+        list.add(value: "b")
+        list.add(value: "c")
+        
+        XCTAssertEqual("a --> b --> c", list.traverse())
+    }
+    
+    func testLinkedListWillRemoveItems() {
+        
+        let list = LinkedList()
+        
+        list.add(value: "a")
+        list.add(value: "b")
+        list.add(value: "c")
+        list.add(value: "d")
+        list.add(value: "e")
+        list.remove(value: "c")
+        list.remove(value: "a")
+        list.remove(value: "e")
+        
+        XCTAssertEqual("b --> d", list.traverse())
+    }
+    
+    
 
 }

@@ -9,31 +9,29 @@ import SwiftUI
 
 struct StackView: View {
     
-    @State private var stack = Stack(list: ["a", "b", "c", "d", "e"])
+    @State private var stack = Stack(list: [])
+    @State private var display = ""
+    @State private var count = 1
+    @State private var numToRemove: String = ""
     
     var body: some View {
         
         VStack {
  
-            List(stack.items, id: \.self) { item in
-                if item == stack.items.last {
-                    Text(item + "  <-----  Head")
-                }
-                else {
-                    Text(item)
-                }
-            }
+            
+            Text(display)
             
             HStack(spacing: 200) {
                 Button("Push", action: {
-                    stack.push(value: String(Int.random(in: 1..<100)))
-                    print(stack.items)
+                    stack.push(value: String(count))
+                    count += 1
+                    display = stack.display()
                     
                 })
-                
+
                 Button("Pop", action: {
                     stack.pop()
-                    print(stack.items)
+                    display = stack.display()
                 })
             }
 

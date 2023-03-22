@@ -9,8 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @State private var stack = Stack(list: ["3","2","1"])
-    @State private var linkedList = LinkedList(head: Node(value: "1"))
+
     
 
     

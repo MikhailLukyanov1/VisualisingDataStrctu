@@ -7,37 +7,65 @@
 
 import Foundation
 
-struct LinkedList {
+class LinkedList {
     
     var head: Node?
     var tail: Node?
     
-
-
-    
-    mutating func append(value: String) {
-        
+    func add(value: String) {
+        let node = Node(value: value)
         if head == nil {
-            head = Node(value: value)
-        }
-        else if head != nil && tail == nil {
-            tail = Node(value: value)
-            head!.next = Node(value: value)
-        }
-        else {
-            tail!.next = Node(value: value)
-            tail = Node(value: value)
+            head = node
+        } else if tail == nil {
+            head?.next = node
+            tail = node
+        } else {
+            tail?.next = node
+            tail = node
         }
     }
     
-    func display() {
+    func remove(value: String) {
+         if head?.value == value {
+             head = head?.next
+             if head == nil {
+                 tail = nil
+             }
+         } else {
+             var curr = head?.next
+             var prev = head
+             while curr != nil {
+                 if curr!.value == value {
+                     prev?.next = curr?.next
+                     if curr === tail {
+                         tail = prev
+                     }
+                     break
+                 }
+                 prev = curr
+                 curr = curr?.next
+             }
+         }
+     }
+    
+    func traverse() -> String {
         var currentNode = head
-        print(currentNode!.value)
-        while currentNode!.value != tail!.value {
-            currentNode = currentNode!.next
-            print(currentNode!.value)
+        var display = ""
+        while currentNode != nil {
+            if head != nil {
+                if currentNode!.value == self.head!.value {
+                    display = display + "\(currentNode!.value)"
+                } else {
+                    display = display + " --> \(currentNode!.value)"
+                }
+                currentNode = currentNode?.next
+            }
         }
+        return display
     }
+
+    
+    
     
     
     

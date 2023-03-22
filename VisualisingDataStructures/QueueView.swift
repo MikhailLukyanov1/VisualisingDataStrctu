@@ -9,38 +9,28 @@ import SwiftUI
 
 struct QueueView: View {
     
-    @State private var queue = Queue(list: ["a", "b", "c", "d", "e"])
+    @State private var queue = Queue(list: [])
+    @State private var display = ""
+    @State private var count = 1
     
     var body: some View {
         
         VStack {
- 
-            List(queue.items, id: \.self) { item in
-                if item == queue.items.last {
-                    Text(item + "  <-----  Tail")
-                    
-                }
-                else if item == queue.items.first {
-                    Text(item + "  <-----  Head")
-                }
-                else {
-                    Text(item)
-                }
-            }
-            
+            Text(display)
+                
             HStack(spacing: 200) {
                 Button("Push", action: {
-                    queue.push(value: String(Int.random(in: 1..<100)))
-                    print(queue.items)
+                    queue.push(value: String(count))
+                    count += 1
+                    display = queue.display()
+                    
                 })
                 
                 Button("Pop", action: {
                     queue.pop()
-                    print(queue.items)
+                    display = queue.display()
                 })
             }
-            
-
         }
     }
 }

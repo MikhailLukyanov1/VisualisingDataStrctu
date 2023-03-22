@@ -19,18 +19,29 @@ class Queue {
         items.append(value)
     }
     
-    func pop() -> String? {
+    func pop() {
         if items != [] {
-            return items.removeLast()
-        }
-        else {
-            return nil
+            self.items.removeFirst()
         }
     }
     
     func peek() -> String {
         guard let bottomItem = items.first else { fatalError("Stack is empty")}
         return bottomItem
+    }
+    
+    func display() -> String {
+        var display = ""
+        for item in self.items {
+            if item == self.items.last {
+                display = display + "\(item) <------ Tail\n"
+            } else if item == self.items.first {
+                display = display + "\(item) <------ Head\n"
+            } else {
+                display = display + "\(item)\n"
+            }
+        }
+        return display
     }
         
     
